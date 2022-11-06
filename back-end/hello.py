@@ -12,11 +12,24 @@ import requests
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
+location_name_to_latlong_map = {
+    'massanutten' : 'LWX/40,42',
+    'bryce' : 'sdfsd'
+}
 
+def get_forecast_descriptions(location_name):
+    grid_value = location_name_to_latlong_map[location_name]
+
+    url = "https://api.weather.gov/gridpoints/" + grid_value + "/forecast"
+    response_json = requests.get(url).json()
+    print(response_json)
+    daily_forecast_list = response_json
+    return daily_forecast_list["properties"]["periods"][0:4]
+    
 
 @app.route("/")
 @cross_origin(supports_credentials=True)
-def hello_world():
+def get_park_trail_condition_and_forecast_details():
     r = requests.get("https://www.localconditions.com/weather-massanutten-virginia/va281/past.php")
     soup = BeautifulSoup(r.text, 'html.parser')
     x = soup.find("div", {"id": "accordion-paneled"})
@@ -41,11 +54,14 @@ def hello_world():
 
     trail_conditions_enum = determine_trail_condition(rain_list)
 
+    forecast_descriptions_list = get_forecast_descriptions("massanutten")
+    print(forecast_descriptions_list)
     data = { 
         'last_25_days_precipitation' : rain_list,
-        'trail_condition_description' : trail_conditions_enum.value
+        'trail_condition_description' : trail_conditions_enum.value,
+        'forecast_descriptions' : forecast_descriptions_list
     }
-
+   
     
 
     return jsonify(data)
