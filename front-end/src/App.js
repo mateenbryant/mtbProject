@@ -11,31 +11,22 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ForecastDetail from './components/ForecastDetail';
 
 class App extends React.Component {
-
-
   constructor(props) {
     super(props);
-    this.state = { visibility: true };
+    this.state = { forecastDetailsAreVisible: false };
   }
 
   render() {
     let componentToRender;
 
-    if (this.state.visibility) {
+    if (this.state.forecastDetailsAreVisible) {
       componentToRender = <ForecastDetail />;
     } else {
      componentToRender = <Homepage />;
     }
 
     return (
-
-
-      
-      <div className="App">
-
-
-
-        
+      <div className="App">        
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
@@ -54,7 +45,6 @@ class App extends React.Component {
             </Toolbar>
           </AppBar>
         </Box>
-
         {componentToRender}
       </div>
 
