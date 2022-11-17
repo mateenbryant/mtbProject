@@ -13,8 +13,21 @@ import ForecastDetail from './components/ForecastDetail';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.setDetailVisibility.bind(this);
+    this.handleBackButtonClick.bind(this);
     this.state = { forecastDetailsAreVisible: false };
   }
+
+
+  setDetailVisibility = (detailVisibility) => {
+    this.setState({ forecastDetailsAreVisible: detailVisibility });
+  }
+
+  handleBackButtonClick = () => {
+    this.setState({ forecastDetailsAreVisible : false });
+  }
+
+
 
   render() {
     let componentToRender;
@@ -22,23 +35,28 @@ class App extends React.Component {
     if (this.state.forecastDetailsAreVisible) {
       componentToRender = <ForecastDetail />;
     } else {
-     componentToRender = <Homepage />;
+      componentToRender = <Homepage setDetailVisibility={this.setDetailVisibility} />;
+
     }
 
     return (
-      <div className="App">        
+      <div className="App">
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              >
-                <ArrowBackIcon />
-              </IconButton>
+              {this.state.forecastDetailsAreVisible &&
+                <IconButton
+                // want a function that sets forecast Details to false
+                  onClick={this.handleBackButtonClick}
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  sx={{ mr: 2 }}
+                  >
+                  <ArrowBackIcon />
+                </IconButton>}
+
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 Virginia Mountain Bike Parks
               </Typography>

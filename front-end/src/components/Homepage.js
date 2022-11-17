@@ -12,6 +12,11 @@ class Homepage extends React.Component {
     constructor(props) {
         super(props);
         this.state = { listOfParkSummaries: [] };
+        this.handleClick.bind(this);
+    }
+
+    handleClick = () => {
+        this.props.setDetailVisibility(true);
     }
 
     render() {
@@ -36,7 +41,7 @@ class Homepage extends React.Component {
                             </CardContent>
                             <CardActions>
 
-                                <Button size="small">Learn More</Button>
+                                <Button size="small" onClick={this.handleClick}>Learn More</Button>
                             </CardActions>
                         </Card>)
                 })}
