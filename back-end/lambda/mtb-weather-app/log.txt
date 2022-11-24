@@ -1,3 +1,0 @@
-START RequestId: e53e8e5f-23fd-46b5-a0c2-6ac1693f5754 Version: $LATEST
-This is a test
-Test before first request

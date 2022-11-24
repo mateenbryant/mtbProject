@@ -11,6 +11,12 @@
 # production
 **/build
 
+*/build/*
+
+**/.aws-sam
+**/.aws-sam/**
+
+
 # misc
 .DS_Store
 .env.local
