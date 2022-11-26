@@ -22,9 +22,9 @@ class AppConfig:
 
 app_config = AppConfig(
     locations= {
-        'massanutten' : LocationData(forecast_grid_location='LWX/40,42', historical_precipitation_url_path='weather-massanutten-virginia/va281/past.php', image_url='https://mtbparks.com/images/2016-MASSANUTTEN/Massanutten_bike-park5.jpg'),
-        'bryce' : LocationData(forecast_grid_location='LWX/37,60', historical_precipitation_url_path='weather-basye-virginia/22810/past.php', image_url='https://s14761.pcdn.co/wp-content/uploads/2016/01/Bryce-Mountain-Bike-Park-Virginia-25.jpg'),
-        'snowshoe': LocationData(forecast_grid_location='RLX/119,75', historical_precipitation_url_path='weather-snowshoe-west-virginia/26209/past.php', image_url='https://s14761.pcdn.co/wp-content/uploads/2016/01/Bryce-Mountain-Bike-Park-Virginia-25.jpg')
+        'Massanutten' : LocationData(forecast_grid_location='LWX/40,42', historical_precipitation_url_path='weather-massanutten-virginia/va281/past.php', image_url='https://mtbparks.com/images/2016-MASSANUTTEN/Massanutten_bike-park5.jpg'),
+        'Bryce' : LocationData(forecast_grid_location='LWX/37,60', historical_precipitation_url_path='weather-basye-virginia/22810/past.php', image_url='https://s14761.pcdn.co/wp-content/uploads/2016/01/Bryce-Mountain-Bike-Park-Virginia-25.jpg'),
+        'Snowshoe': LocationData(forecast_grid_location='RLX/119,75', historical_precipitation_url_path='weather-snowshoe-west-virginia/26209/past.php', image_url='https://www.snowshoemtn.com/-/media/snowshoe/summer/2400x1350/2022bikeparkseasonpass.jpg?rev=2a4332ab4f62417b95e316cde05193fc?h=1012&w=1800&hash=0DFE8400D69A11B92FEF950661CFC85B')
     },
     forecast_api_url="https://api.weather.gov/gridpoints/{grid_value}/forecast",
     precipitation_data_source_url="https://www.localconditions.com/{historical_precipitation_url_path}"

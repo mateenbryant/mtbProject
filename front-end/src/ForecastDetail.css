@@ -10,7 +10,7 @@
 }
 
 .Forecast-park-name {
-  color: darkseagreen;
+  color: lightblue;
   font-size: xx-large;
 }
 
@@ -32,23 +32,9 @@
   align-items: center;
   justify-content: center;
   font-size: xx-large;
-  color: blueviolet;
-}
-
-.Forecast-link {
-  color: #61dafb;
+  color: lightgray;
 }
 
 .Forecast-graph {
   background-color: white;
-}
-
-@keyframes Forecast-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
 }

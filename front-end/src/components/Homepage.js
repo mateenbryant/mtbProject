@@ -6,6 +6,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { getParkSummaries } from '../api'
+import Grid from '@mui/material/Grid';
+
 class Homepage extends React.Component {
 
     constructor(props) {
@@ -14,42 +16,53 @@ class Homepage extends React.Component {
         this.handleClick.bind(this);
     }
 
-    handleClick = () => {
-        this.props.setDetailVisibility(true);
+    handleClick = (parkName) => {
+        this.props.setDetailVisibility(true, parkName);
     }
 
     render() {
+
+        const styles = {
+            margin: '2rem',
+            textAlign: 'center',
+        }
+
+        const containerStyles = {
+            justifyContent:"center"
+        }
+
         return (
             <div>
-                {Object.entries(this.state.parkSummaries).map(([parkName, parkImgUrl]) => {
-                    return (
-                        <Card sx={{ maxWidth: 345 }}>
-                            <CardMedia
-                                component="img"
-                                height="140"
-                                image={parkImgUrl}
-                                alt="green iguana"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
+                <Grid container style={containerStyles} spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                    {Object.entries(this.state.parkSummaries).map(([parkName, parkImgUrl]) => {
+                        return (
+                            <Grid style={styles} item xs={8} sm={6} md={6}>
+                                <Card >
+                                    <CardMedia
+                                        component="img"
+                                        image={parkImgUrl}
+                                        alt={parkName + ' Park Image'}/>
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="div">
 
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    {parkName}
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-
-                                <Button size="small" onClick={this.handleClick}>Learn More</Button>
-                            </CardActions>
-                        </Card>)
-                })}
+                                        </Typography>
+                                        <Typography variant="h5" color="text.secondary">
+                                            {parkName}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions style={{alignItems: 'center', justifyContent: 'center'}}>
+                                        <Button size="medium" variant="contained" onClick={e => this.handleClick(parkName)}>View Trail Conditions Forecast</Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>)
+                    })}
+                </Grid>
             </div>
         )
     }
 
     componentDidMount() {
-        getParkSummaries().then(parkSummaries =>this.setState({ parkSummaries: parkSummaries }));
+        getParkSummaries().then(parkSummaries => this.setState({ parkSummaries: parkSummaries }));
     }
 }
 export default Homepage;

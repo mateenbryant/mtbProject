@@ -11,6 +11,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { Typography } from '@mui/material';
 
 ChartJS.register(
     CategoryScale,
@@ -26,21 +27,20 @@ function setupChartData(chartLabels, dataList) {
     const data = {
         labels: chartLabels,
         datasets: [{
-            label: 'My first graph',
-
+            label: 'Daily Recorded Precipitation (in.)',
             data: dataList
-        }
-        ]
+        }]
     };
 
     const config = {
         responsive: true,
-        backgroundColor: 'purple',
+        backgroundColor: 'blue',
         plugins: {
             display: true,
-            title: 'first chart',
+            title: '',
         }
     };
+
     return {
         'data': data,
         'config': config
@@ -56,7 +56,7 @@ export default function PrecipitationChart({ precipitationData }) {
 
     return (
         <div>
-            <br></br>Preciptation within the last 25 days.<br></br>
+            <br></br><Typography> 25 Day Recorded Precipitation </Typography>
             <Line className="Forecast-graph" options={chartConfig.config} data={chartConfig.data} />
         </div>
 

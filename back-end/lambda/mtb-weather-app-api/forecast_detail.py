@@ -66,7 +66,7 @@ def get_computed_trail_conditions_forecast(historical_precipitation_list):
 
 def determine_trail_condition(recent_precipitation_list):
     sumVal = sum(recent_precipitation_list)
-    # rule of thumb, for every inch of rain, wait one day for trail to dry off
+    # TODO: Fine tune the below algorithm (e.g. change the weighting of more recent days to be prioritized.)
     if (sumVal >= 0.0 and sumVal < 0.25) :
         return TrailConditions.OK_CONDITIONS
     elif (sumVal >= .25 and sumVal < .5) :
@@ -80,9 +80,9 @@ def determine_trail_condition(recent_precipitation_list):
 
      
 class TrailConditions (Enum):
-    OK_CONDITIONS = "Zero rain, trails are dry."
-    GREAT_CONDITIONS = "More than a quarter-inch, prime conditions"
-    MEDIOCRE_CONDITIONS = "More than half an inch of rain, okay"
-    BAD_CONDITIONS = "More three-quarters of an inch, get muddy"
-    UNRIDEABLE_CONDITIONS = "More than one inch, trails are not rideable."
+    OK_CONDITIONS = "Minimal to no rain recently - trails should be in great condition."
+    GREAT_CONDITIONS = "About a quarter-inch of rain has fallen recently - prime conditions."
+    MEDIOCRE_CONDITIONS = "More than half an inch of rain has fallen recently - trails may not be in great condition."
+    BAD_CONDITIONS = "More than three-quarters of an inch of rain has fallen recently, trails will probably be fairly muddy."
+    UNRIDEABLE_CONDITIONS = "More than one inch of rain has fallen recently, trails are not rideable."
   

@@ -5,7 +5,6 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ForecastDetail from './components/ForecastDetail';
@@ -18,22 +17,22 @@ class App extends React.Component {
     this.state = { forecastDetailsAreVisible: false };
   }
 
-
-  setDetailVisibility = (detailVisibility) => {
-    this.setState({ forecastDetailsAreVisible: detailVisibility });
+  setDetailVisibility = (detailVisibility, parkName) => {
+    this.setState({
+      forecastDetailsAreVisible: detailVisibility,
+      currentSelectedParkName: parkName
+    });
   }
 
   handleBackButtonClick = () => {
     this.setState({ forecastDetailsAreVisible : false });
   }
 
-
-
   render() {
     let componentToRender;
 
     if (this.state.forecastDetailsAreVisible) {
-      componentToRender = <ForecastDetail />;
+      componentToRender = <ForecastDetail parkName={this.state.currentSelectedParkName}/>;
     } else {
       componentToRender = <Homepage setDetailVisibility={this.setDetailVisibility} />;
 
@@ -46,19 +45,17 @@ class App extends React.Component {
             <Toolbar>
               {this.state.forecastDetailsAreVisible &&
                 <IconButton
-                // want a function that sets forecast Details to false
                   onClick={this.handleBackButtonClick}
                   size="large"
                   edge="start"
                   color="inherit"
                   aria-label="menu"
-                  sx={{ mr: 2 }}
-                  >
+                  sx={{ mr: 2 }}>
                   <ArrowBackIcon />
                 </IconButton>}
 
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Virginia Mountain Bike Parks
+                Weather for MTB Parks in VA/WV
               </Typography>
             </Toolbar>
           </AppBar>
