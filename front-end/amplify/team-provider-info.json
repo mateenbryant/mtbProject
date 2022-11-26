@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mtbfrontend-dev-90153-authRole",
+      "UnauthRoleArn": "arn:aws:iam::982771854060:role/amplify-mtbfrontend-dev-90153-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::982771854060:role/amplify-mtbfrontend-dev-90153-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-mtbfrontend-dev-90153-deployment",
+      "UnauthRoleName": "amplify-mtbfrontend-dev-90153-unauthRole",
+      "StackName": "amplify-mtbfrontend-dev-90153",
+      "StackId": "arn:aws:cloudformation:us-east-1:982771854060:stack/amplify-mtbfrontend-dev-90153/e2042a50-6d92-11ed-9a60-1299aea5a43b",
+      "AmplifyAppId": "d2iq42yv3uioof"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2iq42yv3uioof",
+          "type": "cicd"
+        }
+      }
+    }
+  }
+}
