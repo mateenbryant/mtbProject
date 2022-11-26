@@ -1,5 +1,5 @@
 export function getForecastInfo() {
-    return fetch(process.env.REACT_APP_BACKEND_API_HOSTNAME + '/locations/massanutten/forecast-detail')
+    return fetch(process.env.REACT_APP_BACKEND_API_HOSTNAME + '/locations/forecast-detail/massanutten')
     .then((response) => response.json())
     .then((forecastInfoResponse) => {    
         const precipitationList = forecastInfoResponse.last_25_days_precipitation;

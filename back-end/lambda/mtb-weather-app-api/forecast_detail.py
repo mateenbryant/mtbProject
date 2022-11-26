@@ -23,7 +23,7 @@ def get_forecast_detail_for_location(location):
 def send_http_request(url):
     try:
         # 10 second timeout
-        response = requests.get(url, timeout=10)
+        response = requests.get(url, timeout=10, headers={'User-Agent': '(mtb-weather-app.com, mateenf02@gmail.com)'})
         # Raises an exception for HTTP status codes >= 400
         response.raise_for_status()
     except Exception as e:
