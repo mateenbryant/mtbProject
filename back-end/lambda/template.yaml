@@ -11,6 +11,35 @@ Globals:
     Timeout: 20 
 
 Resources:
+  BackendCloudFrontDistro:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        PriceClass: PriceClass_100
+        IPV6Enabled: true
+        HttpVersion: http2 
+        Origins:
+          - Id: MyOrigin
+            DomainName: !Sub "${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com"
+            OriginPath: /Prod
+            CustomOriginConfig:
+              HTTPSPort: 443
+              OriginProtocolPolicy: https-only
+              OriginSSLProtocols: 
+                - TLSv1.2
+        Enabled: true
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+          CachedMethods:
+            - GET
+            - HEAD
+          Compress: true
+          TargetOriginId: MyOrigin
+          ViewerProtocolPolicy: redirect-to-https
+          CachePolicyId: "658327ea-f89d-4fab-a63d-7e88639e58f6"
   MtbWeatherAppFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
