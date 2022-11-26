@@ -1,5 +1,5 @@
 export function getForecastInfo() {
-    return fetch('http://127.0.0.1:5000')
+    return fetch(process.env.REACT_APP_BACKEND_API_HOSTNAME + '/locations/massanutten/forecast-detail')
     .then((response) => response.json())
     .then((forecastInfoResponse) => {    
         const precipitationList = forecastInfoResponse.last_25_days_precipitation;
@@ -15,13 +15,6 @@ export function getForecastInfo() {
 };
 
 export function getParkSummaries() {
-    return [{
-        parkName: 'Massanutten',
-        parkImg: 'https://mtbparks.com/images/2016-MASSANUTTEN/Massanutten_bike-park5.jpg'
-    },
-    {
-        parkName: 'Bryce',
-        parkImg : 'https://s14761.pcdn.co/wp-content/uploads/2016/01/Bryce-Mountain-Bike-Park-Virginia-25.jpg'
-    }]
+    return fetch(process.env.REACT_APP_BACKEND_API_HOSTNAME + '/locations').then(response => response.json())
 }
 

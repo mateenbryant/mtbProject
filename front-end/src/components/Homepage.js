@@ -6,12 +6,11 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { getParkSummaries } from '../api'
-import { alignProperty } from "@mui/material/styles/cssUtils";
 class Homepage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { listOfParkSummaries: [] };
+        this.state = { parkSummaries: {} };
         this.handleClick.bind(this);
     }
 
@@ -22,13 +21,13 @@ class Homepage extends React.Component {
     render() {
         return (
             <div>
-                {this.state.listOfParkSummaries.map(({ parkName, parkImg }) => {
+                {Object.entries(this.state.parkSummaries).map(([parkName, parkImgUrl]) => {
                     return (
                         <Card sx={{ maxWidth: 345 }}>
                             <CardMedia
                                 component="img"
                                 height="140"
-                                image={parkImg}
+                                image={parkImgUrl}
                                 alt="green iguana"
                             />
                             <CardContent>
@@ -50,7 +49,7 @@ class Homepage extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({ listOfParkSummaries: getParkSummaries() })
+        getParkSummaries().then(parkSummaries =>this.setState({ parkSummaries: parkSummaries }));
     }
 }
 export default Homepage;

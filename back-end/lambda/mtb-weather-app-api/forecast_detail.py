@@ -35,7 +35,8 @@ def send_http_request(url):
 def get_forecast_descriptions_list(location_name):
     url = app_config.get_forecast_api_url_for_location(location=location_name)
     response = send_http_request(url)
-    if response.ok is False: return []
+    # TODO: Add retry logic here.
+    if response.ok is False: return [{'detailedForecast': "Could not retrieve forecast for location at this time."}]
 
     daily_forecast_list = response.json()
     return daily_forecast_list["properties"]["periods"][0:4]
