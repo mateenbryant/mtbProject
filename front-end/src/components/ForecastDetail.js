@@ -37,6 +37,7 @@ class ForecastDetail extends React.Component {
 
         <PrecipitationChart sx={{maxWidth: 360}} precipitationData={this.state.precipitationData} />
         <br />
+        <br />
         <Card>
           <CardContent sx={{maxWidth: 360}}>
             <Typography variant="h6" className="Forecast-trail-condition">Computed Trail Conditions Report: </Typography>
